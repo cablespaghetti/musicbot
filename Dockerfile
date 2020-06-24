@@ -3,7 +3,6 @@ COPY ./ /build
 WORKDIR /build
 RUN go build .
 
-FROM ubuntu:20.04
-RUN apt update && apt install -y ca-certificates
+FROM gcr.io/distroless/static-debian10
 COPY --from=builder /build/musicbot /
-CMD ["/musicbot"]
+ENTRYPOINT ["musicbot"]
