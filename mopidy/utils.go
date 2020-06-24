@@ -1,7 +1,7 @@
 package mopidy
 
 import (
-    "../spotify"
+    "github.com/cablespaghetti/musicbot/spotify"
 )
 
 func spotifyTrack(track spotify.Track) Track {

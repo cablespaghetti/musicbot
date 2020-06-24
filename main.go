@@ -5,7 +5,7 @@ import (
     "os"
     "os/signal"
 
-    "./bot"
+    "github.com/cablespaghetti/musicbot/bot"
 
     "github.com/jessevdk/go-flags"
 )

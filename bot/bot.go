@@ -4,8 +4,8 @@ import (
     "fmt"
     "log"
 
-    "../mopidy"
-    "../slack"
+    "github.com/cablespaghetti/musicbot/mopidy"
+    "github.com/cablespaghetti/musicbot/slack"
 )
 
 type BotConfig struct {

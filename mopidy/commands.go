@@ -1,7 +1,7 @@
 package mopidy
 
 import (
-    "../spotify"
+    "github.com/cablespaghetti/musicbot/spotify"
 )
 
 func (m *Client) ClearTracklist() error {

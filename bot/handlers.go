@@ -5,7 +5,7 @@ import (
     "strconv"
     "strings"
 
-    "../spotify"
+    "github.com/cablespaghetti/musicbot/spotify"
 )
 
 var usage = `
