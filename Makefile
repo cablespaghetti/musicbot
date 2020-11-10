@@ -2,7 +2,7 @@ build:
 	go build
 
 release:
-	gox -osarch="darwin/amd64 linux/amd64 linux/arm" -output="./bin/musicbot_{{.OS}}_{{.Arch}}"
+	CGO_ENABLED=0 ~/go/bin/gox -osarch="linux/amd64 linux/arm64" -output="./bin/musicbot_{{.OS}}_{{.Arch}}"
 
 bootstrap:
 	gox -build-toolchain
