@@ -9,6 +9,7 @@ import (
     "log"
     "net/http"
     "os"
+    "time"
 
     rpc "github.com/gorilla/rpc/v2/json2"
     "github.com/gorilla/websocket"
@@ -35,10 +36,11 @@ func New(host string) *Client {
 }
 
 func (mopidy *Client) Connect() error {
-    ws, _, err := dialer.Dial(mopidy.url, nil)
-    if err != nil {
-        return err
-    }
+    var ws *websocket.Conn
+    retry(2*time.Second, func() (err error) {
+        ws, _, err = dialer.Dial(mopidy.url, nil)
+        return
+    })
 
     mopidy.conn = ws
     return nil
@@ -144,5 +146,18 @@ func (mopidy *Client) Run(receiver chan Event) {
         }
 
         mopidy.handleEvent(receiver, event)
+    }
+}
+
+func retry(sleep time.Duration, f func() error) (err error) {
+    for {
+        err = f()
+        if err == nil {
+            return
+        }
+
+        time.Sleep(sleep)
+
+        log.Println("retrying after error:", err)
     }
 }
